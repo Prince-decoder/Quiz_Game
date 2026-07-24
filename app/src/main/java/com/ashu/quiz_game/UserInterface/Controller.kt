@@ -15,7 +15,7 @@ fun Controller(modifier: Modifier, viewModel: QuizViewModel, onFinal:()-> Unit)
     val questionsList =viewModel.GetQuestions()
     var i by remember { mutableStateOf(0) }
     var question= questionsList[i]
-    QuestionScreen(modifier = modifier,questionsList[i],{
+    QuestionScreen(modifier = modifier,question,{
         if(i<questionsList.size-1){
             i++
         }

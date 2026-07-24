@@ -40,6 +40,11 @@ fun QuestionScreen(modifier: Modifier,Question: Question,onNext:()-> Unit)
     var firstClick3 by remember { mutableStateOf(false) }
     var firstClick4 by remember { mutableStateOf(false) }
 
+    var isCorrect1 by remember { mutableStateOf(false) }
+    var isCorrect2 by remember { mutableStateOf(false) }
+    var isCorrect3 by remember { mutableStateOf(false) }
+    var isCorrect4 by remember { mutableStateOf(false) }
+
     var title by remember { mutableStateOf("Submit") }
     var fClick by remember { mutableStateOf(false) }
 
@@ -53,16 +58,24 @@ fun QuestionScreen(modifier: Modifier,Question: Question,onNext:()-> Unit)
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        Card(modifier = Modifier.fillMaxWidth().padding(8.dp), onClick = {firstClick1=true
+        Card(modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp), onClick = {firstClick1=true
                                                                          firstClick2=false
                                                                          firstClick3=false
                                                                          firstClick4=false}, colors =
             if (firstClick1)
             {
+                if (isCorrect1){
+                    CardDefaults.cardColors(Color.Green)
+                }else
                 CardDefaults.cardColors(Color.Blue)
             }
             else{
-                CardDefaults.cardColors()
+                if (isCorrect1){
+                    CardDefaults.cardColors(Color.Green)
+                }else
+                    CardDefaults.cardColors()
             }
         )
         {
@@ -73,16 +86,24 @@ fun QuestionScreen(modifier: Modifier,Question: Question,onNext:()-> Unit)
             }
         }
 
-        Card(modifier = Modifier.fillMaxWidth().padding(8.dp), onClick = {firstClick2=true
+        Card(modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp), onClick = {firstClick2=true
             firstClick1=false
             firstClick3=false
             firstClick4=false}, colors =
             if (firstClick2)
             {
-                CardDefaults.cardColors(Color.Blue)
+                if (isCorrect2){
+                    CardDefaults.cardColors(Color.Green)
+                }else
+                    CardDefaults.cardColors(Color.Blue)
             }
             else{
-                CardDefaults.cardColors()
+                if (isCorrect2){
+                    CardDefaults.cardColors(Color.Green)
+                }else
+                    CardDefaults.cardColors()
             }
         )
         {
@@ -93,16 +114,24 @@ fun QuestionScreen(modifier: Modifier,Question: Question,onNext:()-> Unit)
             }
         }
 
-        Card(modifier = Modifier.fillMaxWidth().padding(8.dp), onClick = {firstClick3=true
+        Card(modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp), onClick = {firstClick3=true
             firstClick2=false
             firstClick1=false
             firstClick4=false}, colors =
             if (firstClick3)
             {
-                CardDefaults.cardColors(Color.Blue)
+                if (isCorrect3){
+                    CardDefaults.cardColors(Color.Green)
+                }else
+                    CardDefaults.cardColors(Color.Blue)
             }
             else{
-                CardDefaults.cardColors()
+                if (isCorrect3){
+                    CardDefaults.cardColors(Color.Green)
+                }else
+                    CardDefaults.cardColors()
             }
         )
         {
@@ -113,16 +142,24 @@ fun QuestionScreen(modifier: Modifier,Question: Question,onNext:()-> Unit)
             }
         }
 
-        Card(modifier = Modifier.fillMaxWidth().padding(8.dp), onClick = {firstClick4=true
+        Card(modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp), onClick = {firstClick4=true
             firstClick2=false
             firstClick3=false
             firstClick1=false}, colors =
             if (firstClick4)
             {
-                CardDefaults.cardColors(Color.Blue)
+                if (isCorrect4){
+                    CardDefaults.cardColors(Color.Green)
+                }else
+                    CardDefaults.cardColors(Color.Blue)
             }
             else{
-                CardDefaults.cardColors()
+                if (isCorrect4){
+                    CardDefaults.cardColors(Color.Green)
+                }else
+                    CardDefaults.cardColors()
             }
         )
         {
@@ -134,18 +171,28 @@ fun QuestionScreen(modifier: Modifier,Question: Question,onNext:()-> Unit)
         }
         Spacer(modifier = Modifier.height(20.dp))
         Button(onClick = {
-            if(fClick)
+            if (fClick)
             {
                 onNext()
-                fClick=false
                 firstClick1=false
                 firstClick2=false
                 firstClick3=false
                 firstClick4=false
+                isCorrect1=false
+                isCorrect2=false
+                isCorrect3=false
+                isCorrect4=false
+                fClick=false
                 title="Submit"
             }
-            else
-            {
+            else{
+                fClick=true
+                when(Question.correct){
+                    1->{isCorrect1=true}
+                    2->{isCorrect2=true}
+                    3->{isCorrect3=true}
+                    4->{isCorrect4=true}
+                }
                 title="Next"
             }
         }) {
