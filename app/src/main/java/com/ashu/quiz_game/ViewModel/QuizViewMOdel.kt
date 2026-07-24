@@ -1,4 +1,4 @@
-package com.ashu.quiz_game
+package com.ashu.quiz_game.ViewModel
 
 import androidx.lifecycle.ViewModel
 import com.ashu.quiz_game.Model.Question
