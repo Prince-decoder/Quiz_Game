@@ -54,8 +54,8 @@ fun UserScreen(modifier: Modifier,onClick:(String)-> Unit)
                 OutlinedTextField(value = name, onValueChange = {name=it}, label = {Text("eg:John")})
                 Spacer(modifier = Modifier.height(8.dp))
                 Button(onClick = {
-                    if(name.isNotEmpty())
-                    onClick(name)})
+                    if(name.isNotEmpty()){
+                    onClick(name)}})
                 {
                     Text("Start")
                 }

@@ -33,7 +33,7 @@ import com.ashu.quiz_game.Model.Question
 import com.ashu.quiz_game.R
 
 @Composable
-fun QuestionScreen(modifier: Modifier,Question: Question,onNext:()-> Unit)
+fun QuestionScreen(modifier: Modifier, Question: Question, correctAns:()-> Unit, onNext:()-> Unit)
 {
     var firstClick1 by remember { mutableStateOf(false) }
     var firstClick2 by remember { mutableStateOf(false) }
@@ -188,10 +188,22 @@ fun QuestionScreen(modifier: Modifier,Question: Question,onNext:()-> Unit)
             else{
                 fClick=true
                 when(Question.correct){
-                    1->{isCorrect1=true}
-                    2->{isCorrect2=true}
-                    3->{isCorrect3=true}
-                    4->{isCorrect4=true}
+                    1->{isCorrect1=true
+                        if (firstClick1){
+                            correctAns()
+                        }}
+                    2->{isCorrect2=true
+                        if (firstClick2){
+                            correctAns()
+                        }}
+                    3->{isCorrect3=true
+                        if (firstClick3){
+                            correctAns()
+                        }}
+                    4->{isCorrect4=true
+                        if (firstClick4){
+                            correctAns()
+                        }}
                 }
                 title="Next"
             }
@@ -201,14 +213,14 @@ fun QuestionScreen(modifier: Modifier,Question: Question,onNext:()-> Unit)
     }
 }
 
-@Preview(showSystemUi = true)
-@Composable
-fun demo()
-{
-    QuestionScreen(Modifier,Question(1, Q = "Which Country flag is this?", Image = R.drawable.ic_flag_of_argentina, option = Options(
-        op1 = "Argentina",
-        op2 = "Uruguay",
-        op3 = "Chile",
-        op4 = "Colombia"
-    ), correct = 1)) { }
-}
+//@Preview(showSystemUi = true)
+//@Composable
+//fun demo()
+//{
+//    QuestionScreen(Modifier,Question(1, Q = "Which Country flag is this?", Image = R.drawable.ic_flag_of_argentina, option = Options(
+//        op1 = "Argentina",
+//        op2 = "Uruguay",
+//        op3 = "Chile",
+//        op4 = "Colombia"
+//    ), correct = 1)) { }
+//}

@@ -39,7 +39,7 @@ class MainActivity : ComponentActivity() {
                         }
                         composable("Questions") {
                             Controller(modifier = Modifier.padding(innerPadding),viewModel) {
-                                navHOstContoler.navigate("Final Page")
+                                navHOstContoler.navigate("FinalPage")
                             }
                         }
                         composable("FinalPage") {
